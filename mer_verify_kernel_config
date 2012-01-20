@@ -1,0 +1,144 @@
+#!/usr/bin/perl -w
+# Mer Kernel config specification checker
+# http://wiki.merproject.org/wiki/Adaptation_Guide
+
+# CONFIG must be set to one of the permitted values "," seperated and
+# multiple values permitted
+
+# y = set and enabled
+# m = set and module
+# n = must be unset (commented out)
+#
+# "value" = must be set to "value"
+# /regexp/ = "value" which matches regexp
+#
+# ! = Failure will be warned, not errored
+
+# Known issues with the basic parser:
+# * # in regexps or strings cause issues if there's no trailing #
+# * can't have "," in /regexp/
+
+use Text::ParseWords;
+use strict;
+
+my $debug = 0;
+my %config;
+
+while (<DATA>) {
+  next if /^\s*(#.*)?$/ ; # skip comments and blank lines
+  chomp;
+
+  my ($conf, $allowed) = split(' ', $_, 2);
+
+  # Remove and capture any trailing comment (dubious matching here
+  # since comments in a "" or // will be removed too)
+  my $comment;
+  if ($allowed =~ s/(#\s*)(.*)?$//) {
+    $comment = $2 if $2;
+  }
+
+  # http://perldoc.perl.org/Text/ParseWords.html
+  my @allowed = parse_line(",", 1, $allowed);
+
+  my $warning;
+  # Strip leading/trailing space for each value and check for warnings
+  foreach (@allowed) {
+    s/^\s+|\s+$//g;
+    $warning = 1 if $_ eq "!" ;
+  }
+
+  # Each CONFIG_* has an array of allowed values, a comment and a flag
+  # to say it's only a warning (in which case we print the comment)
+  $config{$conf} = {allowed => \@allowed,
+		    comment => $comment,
+		    warning => $warning };
+}
+
+print "\nScanning\n" if $debug;
+while (<>) {
+  next if /^\s*(#.*)?$/ ; # skip comments and blank lines
+  chomp;
+  my ($conf, $value) = split('=', $_, 2);
+
+  # Only check CONFIG_* values we know about
+  next unless $config{$conf};
+
+  my $c = $config{$conf};
+
+  print "$conf matched, checking..." if $debug;
+  $c->{"value"} = $value; # Store the value for later reporting
+
+  my $allowed = $c->{"allowed"};
+  for my $allow (@$allowed) {
+    if (substr($allow,1,1) eq '/') { # regexps
+      print "Do a regex match : \"$value\" =~ $allow\n" if $debug;
+
+    } elsif (substr($allow,1,1) eq '"') { # strings
+      print "Do a string match : $allow == $value\n" if $debug;
+      if ($value eq $allow) {$c->{"valid"} = 1; }
+
+    } else { # plain y/m values
+      print "match y/m : $value == $allow\n" if $debug;
+      if ($value eq $allow) {$c->{"valid"} = 1; }
+    }
+  }
+  if ($c->{"valid"}) { print "OK\n" if $debug;}
+}
+
+print "Results\n" if $debug;
+my $fatal = 0;
+for my $conf (keys %config) {
+  my $c = $config{$conf};
+
+  if (! $c->{"valid"}) { # Check for 'n' case
+    foreach my $allow (@{$c->{"allowed"}}) {
+      if (("$allow" eq "n") and ! $c->{"value"}) {
+	$c->{"valid"} = 1;
+      }
+    }
+  }
+
+  # Now report
+  if (! $c->{"valid"}) {
+    print defined($c->{"warning"}) ? "WARN: " : "ERROR: ";
+    print "$conf is invalid\n";
+    if ($c->{"value"}) {
+      print "Value is: ". $c->{"value"} ."\n";
+    } else {
+      print "It is unset\n";
+    }
+    print "Allowed values : ".join(", ", @{$c->{"allowed"}}) ."\n";
+    if ($c->{"warning"}) {
+      print "Comment says: ". $c->{"comment"}."\n";
+    } else {
+      $fatal = 1;
+    }
+  }
+}
+exit $fatal;
+
+
+
+
+
+
+
+
+__DATA__
+# Filesystem value
+CONFIG_EXT4_FS			y,m	# Mer uses ext4 as rootfs
+CONFIG_DEVTMPFS			y
+CONFIG_DEVTMPFS_MOUNT		y	# needed by systemd
+CONFIG_CGROUPS			y
+CONFIG_AUTOFS4_FS		y,m
+CONFIG_IPV6			y,m,!	# optional, but highly recommended
+CONFIG_RTC_DRV_CMOS		y,!	# optional, but highly recommended
+CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
+CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs
+CONFIG_AUDIT			y,!	# optional, but recommended
+CONFIG_TMPFS_POSIX_ACL		y,!	# recommended, if you want pam_systemd.so to setup your "seats"
+CONFIG_ANDROID_PARANOID_NETWORK	n
+CONFIG_ANDROID_LOW_MEMORY_KILLER	n
+CONFIG_DUMMY			n
+CONFIG_ANDROID			n	# not tested
+
