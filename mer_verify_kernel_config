@@ -125,20 +125,28 @@ exit $fatal;
 
 
 __DATA__
-# Filesystem value
-CONFIG_EXT4_FS			y,m	# Mer uses ext4 as rootfs
-CONFIG_DEVTMPFS			y
-CONFIG_DEVTMPFS_MOUNT		y	# needed by systemd
-CONFIG_CGROUPS			y
-CONFIG_AUTOFS4_FS		y,m
-CONFIG_IPV6			y,m,!	# optional, but highly recommended
-CONFIG_RTC_DRV_CMOS		y,!	# optional, but highly recommended
-CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
-CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs
+CONFIG_ANDROID_LOW_MEMORY_KILLER	n # not tested with Mer
+CONFIG_ANDROID			n	# not tested with Mer
+CONFIG_ANDROID_PARANOID_NETWORK	n       # not tested with Mer
 CONFIG_AUDIT			y,!	# optional, but recommended
-CONFIG_TMPFS_POSIX_ACL		y,!	# recommended, if you want pam_systemd.so to setup your "seats"
-CONFIG_ANDROID_PARANOID_NETWORK	n
-CONFIG_ANDROID_LOW_MEMORY_KILLER	n
+CONFIG_AUTOFS4_FS		y,m     # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
+CONFIG_CGROUPS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n36
+CONFIG_DEVTMPFS_MOUNT		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
+CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35 and udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#26
 CONFIG_DUMMY			n
-CONFIG_ANDROID			n	# not tested
+CONFIG_EXT4_FS			y,m,!	# Mer uses ext4 as rootfs by default
+CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
+CONFIG_HOTPLUG			y       # udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#27
+CONFIG_INOTIFY_USER		y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#28
+CONFIG_IPV6			y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
+CONFIG_NET			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#29
+CONFIG_PROC_FS			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#30
+CONFIG_RTC_DRV_CMOS		y,!	# optional, but highly recommended
+CONFIG_SIGNALFD			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#31
+CONFIG_SYSFS_DEPRECATED*	n	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#33
+CONFIG_SYSFS			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#32
+CONFIG_TMPFS_POSIX_ACL		y,!	# recommended, if you want pam_systemd.so to setup your "seats"
+CONFIG_TUN                      y,m,!   # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
+CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs. Also udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#34
+CONFIG_VT			y	# Required for virtual consoles
 
