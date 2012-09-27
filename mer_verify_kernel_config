@@ -126,7 +126,6 @@ exit $fatal;
 
 __DATA__
 CONFIG_ANDROID_LOW_MEMORY_KILLER	n # not tested with Mer
-CONFIG_ANDROID			n	# not tested with Mer
 CONFIG_ANDROID_PARANOID_NETWORK	n       # not tested with Mer
 CONFIG_AUDIT			y,!	# optional, but recommended
 CONFIG_AUTOFS4_FS		y,m     # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
