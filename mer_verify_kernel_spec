@@ -24,6 +24,12 @@
 
 TEMPLATE_VERISION=1
 
+if (( $# < 1 )); then
+    echo "You need to enter template version as first parameter."
+    echo "$0 VERSION"
+    exit 1
+fi
+
 SPEC_VERSION=$1
 
 if (( $TEMPLATE_VERISION > $SPEC_VERSION )); then
