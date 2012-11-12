@@ -22,11 +22,17 @@
 # The developer of course can either update the template at once, make
 # it a warning only or remove the check altogether.
 
-TEMPLATE_VERISION=1
+TEMPLATE_VERSION=1
+
+if (( $# < 1 )); then
+    echo "You need to enter template version as first parameter."
+    echo "$0 VERSION"
+    exit 1
+fi
 
 SPEC_VERSION=$1
 
-if (( $TEMPLATE_VERISION > $SPEC_VERSION )); then
+if (( $TEMPLATE_VERSION > $SPEC_VERSION )); then
     echo
     echo
     echo "Your kernel .spec is using an out of date template."

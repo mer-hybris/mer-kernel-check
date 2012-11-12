@@ -130,6 +130,17 @@ CONFIG_ANDROID_PARANOID_NETWORK	n       # not tested with Mer
 CONFIG_AUDIT			y,!	# optional, but recommended
 CONFIG_AUTOFS4_FS		y,m     # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
 CONFIG_CGROUPS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n36
+CONFIG_CGROUP_FREEZER		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_DEVICE		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_CPUACCT		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_MEM_RES_CTLR	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_MEM_RES_CTLR_SWAP	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_MEM_RES_CTLR_KMEM	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_PERF		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_SCHED		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_BLK_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_NET_CLS_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_NETPRIO_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_DEVTMPFS_MOUNT		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
 CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35 and udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#26
 CONFIG_DUMMY			n
