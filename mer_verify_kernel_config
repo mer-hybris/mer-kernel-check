@@ -144,6 +144,8 @@ CONFIG_NETPRIO_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/project
 CONFIG_DEVTMPFS_MOUNT		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
 CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35 and udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#26
 CONFIG_DUMMY			n
+CONFIG_UNIX			y	# UNIX sockets option is required to run Mer
+CONFIG_SYSVIPC			y	# Inter Process Communication option is required to run Mer
 CONFIG_EXT4_FS			y,m,!	# Mer uses ext4 as rootfs by default
 CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
 CONFIG_HOTPLUG			y       # udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#27
