@@ -108,7 +108,7 @@ for my $conf (keys %config) {
       print "It is unset\n";
     }
     print "Allowed values : ".join(", ", @{$c->{"allowed"}}) ."\n";
-    print "Comment says: ". $c->{"comment"}."\n";
+    print "Comment says: ". $c->{"comment"}."\n\n";
     if (! $c->{"warning"}) {
       $fatal = 1;
     }
