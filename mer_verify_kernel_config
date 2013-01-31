@@ -100,7 +100,7 @@ for my $conf (keys %config) {
 
   # Now report
   if (! $c->{"valid"}) {
-    print defined($c->{"warning"}) ? "WARN: " : "ERROR: ";
+    print defined($c->{"warning"}) ? "WARNING: " : "ERROR: ";
     print "$conf is invalid\n";
     if ($c->{"value"}) {
       print "Value is: ". $c->{"value"} ."\n";
