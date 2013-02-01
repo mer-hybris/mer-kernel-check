@@ -100,7 +100,7 @@ for my $conf (keys %config) {
 
   # Now report
   if (! $c->{"valid"}) {
-    print defined($c->{"warning"}) ? "WARN: " : "ERROR: ";
+    print defined($c->{"warning"}) ? "WARNING: " : "ERROR: ";
     print "$conf is invalid\n";
     if ($c->{"value"}) {
       print "Value is: ". $c->{"value"} ."\n";
@@ -108,9 +108,8 @@ for my $conf (keys %config) {
       print "It is unset\n";
     }
     print "Allowed values : ".join(", ", @{$c->{"allowed"}}) ."\n";
-    if ($c->{"warning"}) {
-      print "Comment says: ". $c->{"comment"}."\n";
-    } else {
+    print "Comment says: ". $c->{"comment"}."\n\n";
+    if (! $c->{"warning"}) {
       $fatal = 1;
     }
   }
@@ -161,4 +160,5 @@ CONFIG_TMPFS_POSIX_ACL		y,!	# recommended, if you want pam_systemd.so to setup y
 CONFIG_TUN                      y,m,!   # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
 CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs. Also udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#34
 CONFIG_VT			y	# Required for virtual consoles
+CONFIG_LBDAF			y,!	# ext4 filesystem requires this in order to support filesysetms with huge_file feature, which is enabled by default by mke2fs.ext4
 
