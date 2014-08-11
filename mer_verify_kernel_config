@@ -146,6 +146,7 @@ CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd
 CONFIG_DUMMY			n
 CONFIG_FHANDLE			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
 CONFIG_NLS_UTF8			y	# Ensure that we support UTF8 filenames.
+CONFIG_HIDRAW			y,m,!	# optional: Support HID devices
 CONFIG_UNIX			y	# UNIX sockets option is required to run Mer
 CONFIG_SYSVIPC			y	# Inter Process Communication option is required to run Mer
 CONFIG_EXT4_FS			y,m,!	# Mer uses ext4 as rootfs by default
