@@ -146,6 +146,11 @@ CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd
 CONFIG_DUMMY			n
 CONFIG_FHANDLE			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
 CONFIG_NLS_UTF8			y	# Ensure that we support UTF8 filenames.
+CONFIG_BT			y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
+CONFIG_BT_RFCOMM		y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
+CONFIG_BT_HCIUART		y,!     # Bluez (optional): Needed if bluez used as bluetooth stack
+CONFIG_BT_HCIUART_H4		y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
+CONFIG_BT_MSM_SLEEP		n,!	# Bluez (optional): Causes problems with bluez thus disabling is recommended.
 CONFIG_HIDRAW			y,m,!	# optional: Support HID devices
 CONFIG_UNIX			y	# UNIX sockets option is required to run Mer
 CONFIG_SYSVIPC			y	# Inter Process Communication option is required to run Mer
