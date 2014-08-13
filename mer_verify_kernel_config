@@ -142,7 +142,7 @@ CONFIG_BLK_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cg
 CONFIG_NET_CLS_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_NETPRIO_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_DEVTMPFS_MOUNT		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
-CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35 and udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#26
+CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
 CONFIG_DUMMY			n
 CONFIG_FHANDLE			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
 CONFIG_NLS_UTF8			y	# Ensure that we support UTF8 filenames.
@@ -156,19 +156,19 @@ CONFIG_UNIX			y	# UNIX sockets option is required to run Mer
 CONFIG_SYSVIPC			y	# Inter Process Communication option is required to run Mer
 CONFIG_EXT4_FS			y,m,!	# Mer uses ext4 as rootfs by default
 CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
-CONFIG_HOTPLUG			y       # udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#27
-CONFIG_INOTIFY_USER		y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#28
+CONFIG_HOTPLUG			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_INOTIFY_USER		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_IP_NF_TARGET_MASQUERADE	y,m,!   # connman (optional): support tethering http://git.kernel.org/cgit/network/connman/connman.git/tree/README#n207
 CONFIG_IPV6			y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
-CONFIG_NET			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#29
-CONFIG_PROC_FS			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#30
 CONFIG_RTC_DRV_CMOS		y,!	# optional, but highly recommended
-CONFIG_SIGNALFD			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#31
-CONFIG_SYSFS_DEPRECATED*	n	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#33
-CONFIG_SYSFS			y	# udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#32
+CONFIG_SIGNALFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_NET			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=41938693e76c32161d2b3b83253ce996468cbf9b
+CONFIG_SYSFS			y	# systend: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_PROC_FS			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=06d461ee6f3da6650e6d023d7828455752d70b0b
+CONFIG_SYSFS_DEPRECATED		n	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_TMPFS_POSIX_ACL		y,!	# recommended, if you want pam_systemd.so to setup your "seats"
 CONFIG_TUN                      y,m,!   # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
-CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs. Also udev http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;hb=HEAD;f=README#34
+CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs. Also systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_VT			y	# Required for virtual consoles
 CONFIG_LBDAF			y,!	# ext4 filesystem requires this in order to support filesysetms with huge_file feature, which is enabled by default by mke2fs.ext4
 
