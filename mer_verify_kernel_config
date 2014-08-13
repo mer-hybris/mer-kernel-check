@@ -145,6 +145,8 @@ CONFIG_DEVTMPFS_MOUNT		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/
 CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
 CONFIG_DUMMY			n
 CONFIG_FHANDLE			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
+CONFIG_SCHEDSTATS		y,!	# systemd-bootchart (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f1c24fea94e19cf2108abbeed1d36ded7102ab98
+CONFIG_SCHED_DEBUG		y,!	# systemd-bootchart (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f1c24fea94e19cf2108abbeed1d36ded7102ab98
 CONFIG_NLS_UTF8			y	# Ensure that we support UTF8 filenames.
 CONFIG_BT			y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
 CONFIG_BT_RFCOMM		y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
