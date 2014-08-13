@@ -162,6 +162,8 @@ CONFIG_IP_NF_TARGET_MASQUERADE	y,m,!   # connman (optional): support tethering h
 CONFIG_IPV6			y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
 CONFIG_RTC_DRV_CMOS		y,!	# optional, but highly recommended
 CONFIG_SIGNALFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_TIMERFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_EPOLL			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_NET			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=41938693e76c32161d2b3b83253ce996468cbf9b
 CONFIG_SYSFS			y	# systend: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_PROC_FS			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=06d461ee6f3da6650e6d023d7828455752d70b0b
@@ -169,6 +171,7 @@ CONFIG_SYSFS_DEPRECATED		n	# systemd: http://cgit.freedesktop.org/systemd/system
 CONFIG_TMPFS_POSIX_ACL		y,!	# recommended, if you want pam_systemd.so to setup your "seats"
 CONFIG_TUN                      y,m,!   # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
 CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs. Also systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_FW_LOADER_USER_HELPER	n	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_VT			y	# Required for virtual consoles
 CONFIG_LBDAF			y,!	# ext4 filesystem requires this in order to support filesysetms with huge_file feature, which is enabled by default by mke2fs.ext4
 
