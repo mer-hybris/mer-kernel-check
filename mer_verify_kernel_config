@@ -128,7 +128,15 @@ CONFIG_ANDROID_LOW_MEMORY_KILLER	n # not tested with Mer
 CONFIG_ANDROID_PARANOID_NETWORK	n       # not tested with Mer
 CONFIG_AUDIT			n,!	# systemd: Either disable here or in cmdline http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
 CONFIG_AUTOFS4_FS		y,m,!	# systemd (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_BRIDGE			y,m,!   # connman (optional): support tethering: http://git.kernel.org/cgit/network/connman/connman.git/tree/README#n207
+CONFIG_BRIDGE			y,m,!   # connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
+CONFIG_IP_NF_TARGET_MASQUERADE	y,m,!   # connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
+CONFIG_IP_NF_IPTABLES		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
+CONFIG_IP_MULTIPLE_TABLES	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
+CONFIG_NETFILTER_NETLINK_ACCT	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
+CONFIG_NETFILTER_XT_MATCH_NFACCT	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
+CONFIG_NETFILTER_XT_CONNMARK		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
+CONFIG_NETFILTER_XT_TARGET_CONNMARK	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
+CONFIG_NETFILTER_XT_MATCH_CONNMARK	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
 CONFIG_CGROUPS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_CGROUP_FREEZER		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_DEVICE		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
@@ -159,7 +167,6 @@ CONFIG_EXT4_FS			y,m,!	# Mer uses ext4 as rootfs by default
 CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
 CONFIG_HOTPLUG			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_INOTIFY_USER		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_IP_NF_TARGET_MASQUERADE	y,m,!   # connman (optional): support tethering http://git.kernel.org/cgit/network/connman/connman.git/tree/README#n207
 CONFIG_IPV6			y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
 CONFIG_RTC_DRV_CMOS		y,!	# optional, but highly recommended
 CONFIG_SIGNALFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
