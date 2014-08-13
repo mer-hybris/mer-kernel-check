@@ -126,10 +126,10 @@ exit $fatal;
 __DATA__
 CONFIG_ANDROID_LOW_MEMORY_KILLER	n # not tested with Mer
 CONFIG_ANDROID_PARANOID_NETWORK	n       # not tested with Mer
-CONFIG_AUDIT			y,!	# optional, but recommended
-CONFIG_AUTOFS4_FS		y,m     # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
+CONFIG_AUDIT			n,!	# systemd: Either disable here or in cmdline http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
+CONFIG_AUTOFS4_FS		y,m,!	# systemd (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_BRIDGE			y,m,!   # connman (optional): support tethering: http://git.kernel.org/cgit/network/connman/connman.git/tree/README#n207
-CONFIG_CGROUPS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n36
+CONFIG_CGROUPS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_CGROUP_FREEZER		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_DEVICE		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_CPUACCT		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
@@ -141,8 +141,7 @@ CONFIG_CGROUP_SCHED		y,!	# systemd (optional): http://0pointer.de/blog/projects/
 CONFIG_BLK_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_NET_CLS_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_NETPRIO_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_DEVTMPFS_MOUNT		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
-CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n35
+CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_DUMMY			n
 CONFIG_FHANDLE			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
 CONFIG_SCHEDSTATS		y,!	# systemd-bootchart (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f1c24fea94e19cf2108abbeed1d36ded7102ab98
@@ -167,10 +166,12 @@ CONFIG_SIGNALFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commi
 CONFIG_TIMERFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_EPOLL			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_NET			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=41938693e76c32161d2b3b83253ce996468cbf9b
-CONFIG_SYSFS			y	# systend: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_SYSFS			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_PROC_FS			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=06d461ee6f3da6650e6d023d7828455752d70b0b
 CONFIG_SYSFS_DEPRECATED		n	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_TMPFS_POSIX_ACL		y,!	# recommended, if you want pam_systemd.so to setup your "seats"
+CONFIG_TMPFS_POSIX_ACL		y,!	# systemd (optional): strongly recommended, if you want pam_systemd.so to setup your "seats". http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
+CONFIG_TMPFS_XATTR		y,!	# systemd (optional): strongly recommended, http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_SECCOMP			y,!	# systemd (optional): strongly recommended, http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f28cbd0382ca53baa99803bbc907a469fbf68128
 CONFIG_TUN                      y,m,!   # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
 CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs. Also systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_FW_LOADER_USER_HELPER	n	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
