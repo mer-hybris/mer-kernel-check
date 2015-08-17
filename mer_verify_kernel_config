@@ -187,4 +187,5 @@ CONFIG_LBDAF			y,!	# ext4 filesystem requires this in order to support filesyset
 CONFIG_WATCHDOG_NOWAYOUT	y,!	# If device uses watchdogs with dsme (https://github.com/nemomobile/dsme), this option should be enabled or watchdog does not protect the device in case dsme crashes.
 CONFIG_CHECKPOINT_RESTORE	y,!	# rich-core-dumper (https://github.com/mer-tools/sp-rich-core/) needs this to collect all data for environment recreation.
 CONFIG_RD_GZIP			y	# Required by hybris-boot Android.mk
+CONFIG_SLAB			y,!     # sp-endurance (https://github.com/mer-tools/sp-endurance/) needs this to collect kernel slab allocator statistics.
 
