@@ -181,7 +181,7 @@ CONFIG_TMPFS_XATTR		y,!	# systemd (optional): strongly recommended, http://cgit.
 CONFIG_SECCOMP			y,!	# systemd (optional): strongly recommended, http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f28cbd0382ca53baa99803bbc907a469fbf68128
 CONFIG_TUN                      y,m,!   # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
 CONFIG_UEVENT_HELPER_PATH	"", !	# should be empty, if you want to use systemd without initramfs. Also systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_FW_LOADER_USER_HELPER	n	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
+CONFIG_FW_LOADER_USER_HELPER	n,!	# it's actually needed by some Lollipop based devices; systemd(optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_VT			y	# Required for virtual consoles
 CONFIG_LBDAF			y,!	# ext4 filesystem requires this in order to support filesysetms with huge_file feature, which is enabled by default by mke2fs.ext4
 CONFIG_WATCHDOG_NOWAYOUT	y,!	# If device uses watchdogs with dsme (https://github.com/nemomobile/dsme), this option should be enabled or watchdog does not protect the device in case dsme crashes.
