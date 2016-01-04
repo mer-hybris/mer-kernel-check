@@ -125,7 +125,7 @@ exit $fatal;
 
 __DATA__
 CONFIG_ANDROID_LOW_MEMORY_KILLER	n # not tested with Mer
-CONFIG_ANDROID_PARANOID_NETWORK	n       # not tested with Mer
+CONFIG_ANDROID_PARANOID_NETWORK	y,n       # not tested with Mer
 CONFIG_AUDIT			n,!	# systemd: Either disable here or in cmdline http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
 CONFIG_AUTOFS4_FS		y,m,!	# systemd (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_BRIDGE			y,m,!   # connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
