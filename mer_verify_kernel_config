@@ -189,4 +189,5 @@ CONFIG_CHECKPOINT_RESTORE	y,!	# rich-core-dumper (https://github.com/mer-tools/s
 CONFIG_RD_GZIP			y	# Required by hybris-boot Android.mk
 CONFIG_IKCONFIG_PROC		y	# Required by hybris-boot init-script
 CONFIG_DEVTMPFS_MOUNT		y	# Required by hybris-boot init-script
+CONFIG_SECURITY_SELINUX_BOOTPARAM	y	# Required by Mer, currently SELINUX has to be disabled
 
