@@ -176,7 +176,7 @@ CONFIG_NET			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/REA
 CONFIG_SYSFS			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_PROC_FS			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=06d461ee6f3da6650e6d023d7828455752d70b0b
 CONFIG_SYSFS_DEPRECATED		n	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
-CONFIG_TMPFS_POSIX_ACL		y,!	# systemd (optional): strongly recommended, if you want pam_systemd.so to setup your "seats". http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
+CONFIG_TMPFS_POSIX_ACL		y	# systemd: required by hybris-boot init-script, if you want pam_systemd.so to setup your "seats". http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
 CONFIG_TMPFS_XATTR		y,!	# systemd (optional): strongly recommended, http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_SECCOMP			y,!	# systemd (optional): strongly recommended, http://cgit.freedesktop.org/systemd/systemd/commit/README?id=f28cbd0382ca53baa99803bbc907a469fbf68128
 CONFIG_TUN                      y,m,!   # ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
@@ -187,4 +187,6 @@ CONFIG_LBDAF			y,!	# ext4 filesystem requires this in order to support filesyset
 CONFIG_WATCHDOG_NOWAYOUT	y,!	# If device uses watchdogs with dsme (https://github.com/nemomobile/dsme), this option should be enabled or watchdog does not protect the device in case dsme crashes.
 CONFIG_CHECKPOINT_RESTORE	y,!	# rich-core-dumper (https://github.com/mer-tools/sp-rich-core/) needs this to collect all data for environment recreation.
 CONFIG_RD_GZIP			y	# Required by hybris-boot Android.mk
+CONFIG_IKCONFIG_PROC		y	# Required by hybris-boot init-script
+CONFIG_DEVTMPFS_MOUNT		y	# Required by hybris-boot init-script
 
