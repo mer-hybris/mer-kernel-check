@@ -190,4 +190,7 @@ CONFIG_RD_GZIP			y	# Required by hybris-boot Android.mk
 CONFIG_IKCONFIG_PROC		y	# Required by hybris-boot init-script
 CONFIG_DEVTMPFS_MOUNT		y	# Required by hybris-boot init-script
 CONFIG_SECURITY_SELINUX_BOOTPARAM	y,!	# Required by hybris, SELinux needs to be disabled. Leave as not set, if you have unset AUDIT (read more about the CONFIG_AUDIT flag)
-
+CONFIG_UTS_NS 			Y,!	# optional, enables kernel namespaces for systemd-nspawn containers
+CONFIG_IPC_NS			Y,!	# optional, enables kernel namespaces for systemd-nspawn containers
+CONFIG_PID_NS			Y,!	# optional, enables kernel namespaces for systemd-nspawn containers
+CONFIG_NET_NS			Y,!	# optional, enables kernel namespaces for systemd-nspawn containers
