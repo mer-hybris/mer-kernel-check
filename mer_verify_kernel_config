@@ -124,7 +124,7 @@ exit $fatal;
 
 
 __DATA__
-CONFIG_ANDROID_LOW_MEMORY_KILLER	n # not tested with Mer
+CONFIG_ANDROID_LOW_MEMORY_KILLER	y,! # Helping memory handling at least with Android runtime (tested on Jolla C)
 CONFIG_ANDROID_PARANOID_NETWORK	y,n       # Since Android 5 on some devices this flag is needed for rild to work. But it breaks connectivity in Sailfish OS if user nemo is not part of inet group. "y,n" switch means that this flag's presence/absence won't fail the checks anymore, but instead dhd will autodetect it and add nemo to inet
 CONFIG_AUDIT			n,!	# This will disable SELinux! That's ok, because hybris adaptations must not have SELinux, but if your device needs its support in kernel, set AUDIT=y and SELINUX_BOOTPARAM=y. Then disable them via kernel cmdline: audit=0 selinux=0. You can also leave audit enabled, if you don't plan to use systemd's containers: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
 CONFIG_AUTOFS4_FS		y,m,!	# systemd (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
