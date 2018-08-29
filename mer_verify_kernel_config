@@ -141,9 +141,12 @@ CONFIG_CGROUPS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/
 CONFIG_CGROUP_FREEZER		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_DEVICE		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_CPUACCT		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_MEM_RES_CTLR	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_MEM_RES_CTLR_SWAP	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_MEM_RES_CTLR_KMEM	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_CGROUP_MEM_RES_CTLR	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
+CONFIG_CGROUP_MEM_RES_CTLR_SWAP	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
+CONFIG_CGROUP_MEM_RES_CTLR_KMEM	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
+CONFIG_MEMCG			y,!	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
+CONFIG_MEMCG_SWAP		y,!	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
+CONFIG_MEMCG_KMEM		y,!	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
 CONFIG_CGROUP_PERF		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_SCHED		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_BLK_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
