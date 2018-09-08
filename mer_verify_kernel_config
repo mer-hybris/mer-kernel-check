@@ -223,7 +223,8 @@ CONFIG_CGROUP_PERF		y,!	# systemd (optional): http://0pointer.de/blog/projects/c
 CONFIG_CGROUP_SCHED		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_BLK_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_NET_CLS_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_NETPRIO_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
+CONFIG_NETPRIO_CGROUP		y,!,<3.15	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if kernel version is <3.15
+CONFIG_CGROUP_NET_PRIO		y,!>=3.1	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if kernel version is <3.15
 CONFIG_DEVTMPFS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_DUMMY			n
 CONFIG_FHANDLE			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
