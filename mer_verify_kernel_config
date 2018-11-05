@@ -310,4 +310,5 @@ CONFIG_CIFS			y,m,!     # optional extra filesystem (CIFS - Windows net fs)
 CONFIG_BTRFS_FS			y,!     # optional extra filesystem (BTRFS)
 CONFIG_IP_NF_MATCH_RPFILTER	y	# Add to have both IPv4 and IPv6 RPFILTER matches set
 CONFIG_IP6_NF_MATCH_RPFILTER	y	# To be able to mitigate CVE-2019-14899 with ConnMan iptables rule
+CONFIG_NF_NAT_IPV6		y,m,!	# connman: to enable IPv6 NAT
 
