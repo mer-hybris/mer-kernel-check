@@ -197,3 +197,5 @@ CONFIG_UTS_NS 			y,!	# optional, enables kernel namespaces for systemd-nspawn co
 CONFIG_IPC_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_PID_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_NET_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn containers
+CONFIG_SECURITY_YAMA		y,!     # optional, prevents user's processes from ptracing each other
+CONFIG_SECURITY_YAMA_STACKED	y,!     # optional, ignore for kernel version >= 4.3
