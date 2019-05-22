@@ -199,3 +199,24 @@ CONFIG_PID_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn con
 CONFIG_NET_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_SECURITY_YAMA		y,!     # optional, prevents user's processes from ptracing each other
 CONFIG_SECURITY_YAMA_STACKED	y,!     # optional, ignore for kernel version >= 4.3
+CONFIG_NETWORK_FILESYSTEMS	y,!     # optional, for NFS support
+CONFIG_NFS_FS			y,m,!     # optional, for NFS support
+CONFIG_NFS_V3			y,!     # optional, for NFS support
+CONFIG_NFS_V3_ACL		y,!     # optional, for NFS support
+CONFIG_NFS_V4			y,!     # optional, for NFS support
+CONFIG_NFS_V4_1			y,!     # optional, for NFS support
+CONFIG_NFS_USE_KERNEL_DNS	y,!     # optional, for NFS support
+CONFIG_NFS_ACL_SUPPORT		y,m,!     # optional, for NFS support
+CONFIG_NFS_COMMON			y,!     # optional, for NFS support
+CONFIG_LOCKD			y,m,!     # optional, for NFS support
+CONFIG_LOCKD_V4			y,!     # optional, for NFS support
+CONFIG_SUNRPC			y,m,!     # optional, for NFS support
+CONFIG_SUNRPC_GSS			y,m,!     # optional, for NFS support
+CONFIG_BLK_DEV_NBD			y,m,!     # optional, for NFS & CIFS support
+CONFIG_ISO9660_FS			y,m,!     # optional extra filesystem (CD-ROM)
+CONFIG_UDF_FS			y,m,!     # optional extra filesystem (DVD & portable USB)
+CONFIG_ECRYPT_FS			y,m,!     # optional extra filesystem (ecryptfs)
+CONFIG_F2FS_FS			y,m,!     # optional extra filesystem (f2fs - a good SD filesystem)
+CONFIG_CIFS			y,m,!     # optional extra filesystem (CIFS - Windows net fs)
+CONFIG_BTRFS_FS			y,!     # optional extra filesystem (BTRFS)
+
