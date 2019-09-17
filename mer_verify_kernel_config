@@ -24,6 +24,41 @@ use strict;
 my $debug = 0;
 my %config;
 
+
+=item cmp_version()
+
+=head1 NAME cmp_version - compare two version strings
+
+=head1 SYNOPSIS
+  cmp_version(1.0, >=, 2.0);
+
+=head1 DESCRIPTION
+
+Compare C<$version> and C<$version1> with C<operator>.
+Just like if ( ) but for version strings.
+=cut
+
+sub cmp_version
+{
+
+  my $st_version = shift;
+  my $operator = shift;
+  my $nd_version = shift;
+
+  return version->parse($st_version) < version->parse($nd_version)
+      if $operator eq '<';
+  return version->parse($st_version) > version->parse($nd_version)
+      if $operator eq '>';
+  return version->parse($st_version) >= version->parse($nd_version)
+      if $operator eq '>=';
+  return version->parse($st_version) == version->parse($nd_version)
+      if $operator eq '==';
+  return version->parse($st_version) <= version->parse($nd_version)
+      if $operator eq '<=';
+  return version->parse($st_version) != version->parse($nd_version)
+      if $operator eq '!=';
+}
+
 while (<DATA>) {
   next if /^\s*(#.*)?$/ ; # skip comments and blank lines
   chomp;
@@ -41,22 +76,55 @@ while (<DATA>) {
   my @allowed = parse_line(",", 1, $allowed);
 
   my $warning;
+  my $version;
   # Strip leading/trailing space for each value and check for warnings
   foreach (@allowed) {
     s/^\s+|\s+$//g;
     $warning = 1 if $_ eq "!" ;
+    $version = $_ if m/[\d\.<>=]/;
   }
 
   # Each CONFIG_* has an array of allowed values, a comment and a flag
   # to say it's only a warning (in which case we print the comment)
   $config{$conf} = {allowed => \@allowed,
-		    comment => $comment,
-		    warning => $warning };
+                    comment => $comment,
+                    warning => $warning,
+                    version => $version};
 }
+
+my $kconfig_line = 0;
+my $kernel_version;
 
 print "\nScanning\n" if $debug;
 while (<>) {
+
+  if (!$kernel_version  and $kconfig_line < 4 ) {
+     if ($_ =~ /[[:digit:]]{1,2}\.[[:digit:]]{1,2}\.[[:digit:]]{1,3}/) {
+      # Find string with kernel version and extract version number from it
+      $_ =~ s/#//;
+      $kernel_version = (split(' ', $_, 3))[1];
+      # Look for values that aren't valid for $kernel_version
+      for my $conf (keys %config)
+      {
+         my $c = $config{$conf};
+         if ($c->{"version"})
+         {
+            my $config_version = $c->{"version"};
+            my $operator = $config_version;
+            $operator =~ s/[\d\s\w\.]//g;
+            $config_version =~ s/[><=]//g;
+            if(!cmp_version($kernel_version, $operator, $config_version))
+            {
+               delete($config{$conf});
+               print "Removing $conf, $kernel_version, $operator, $config_version\n"
+                   if $debug;
+            }
+         }
+      }
+    }
+  }
   next if /^\s*(#.*)?$/ ; # skip comments and blank lines
+  $kconfig_line++;
   chomp;
   my ($conf, $value) = split('=', $_, 2);
 
@@ -86,6 +154,8 @@ while (<>) {
 }
 
 print "Results\n" if $debug;
+print "WARNING: kernel version missing, some reports maybe misleading\n"
+    if not $kernel_version;
 my $fatal = 0;
 for my $conf (keys %config) {
   my $c = $config{$conf};
@@ -143,12 +213,12 @@ CONFIG_CGROUPS			y       # systemd: http://cgit.freedesktop.org/systemd/systemd/
 CONFIG_CGROUP_FREEZER		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_DEVICE		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_CPUACCT		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
-CONFIG_CGROUP_MEM_RES_CTLR	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
-CONFIG_CGROUP_MEM_RES_CTLR_SWAP	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
-CONFIG_CGROUP_MEM_RES_CTLR_KMEM	y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version >= 3.10
-CONFIG_MEMCG			y,!	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
-CONFIG_MEMCG_SWAP		y,!	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
-CONFIG_MEMCG_KMEM		y,!	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, ignore if kernel version < 3.10
+CONFIG_CGROUP_MEM_RES_CTLR	y,!,<=3.5	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if kernel version <= 3.5
+CONFIG_CGROUP_MEM_RES_CTLR_SWAP	y,!,<=3.5	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if kernel version <= 3.5
+CONFIG_CGROUP_MEM_RES_CTLR_KMEM	y,!,<=3.5	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if kernel version <= 3.5
+CONFIG_MEMCG			y,!,>=3.6	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if version >= 3.6
+CONFIG_MEMCG_SWAP		y,!,>=3.6	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if kernel version >= 3.6
+CONFIG_MEMCG_KMEM		y,!,>=3.6	# systemd (optional, but recommended): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html, only valid if kernel version >= 3.6
 CONFIG_CGROUP_PERF		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_CGROUP_SCHED		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
 CONFIG_BLK_CGROUP		y,!	# systemd (optional): http://0pointer.de/blog/projects/cgroups-vs-cgroups.html
@@ -199,7 +269,7 @@ CONFIG_IPC_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn con
 CONFIG_PID_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_NET_NS			y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_SECURITY_YAMA		y,!     # optional, prevents user's processes from ptracing each other
-CONFIG_SECURITY_YAMA_STACKED	y,!     # optional, ignore for kernel version >= 4.3
+CONFIG_SECURITY_YAMA_STACKED	y,!,<4.3     # optional, only valid for kernel < 4.3
 CONFIG_NETWORK_FILESYSTEMS	y,!     # optional, for NFS support
 CONFIG_NFS_FS			y,m,!     # optional, for NFS support
 CONFIG_NFS_V3			y,!     # optional, for NFS support
