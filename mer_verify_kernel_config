@@ -99,10 +99,14 @@ print "\nScanning\n" if $debug;
 while (<>) {
 
   if (!$kernel_version  and $kconfig_line < 4 ) {
+     print "HEADER:$_" if $debug;
      if ($_ =~ /[[:digit:]]{1,2}\.[[:digit:]]{1,2}\.[[:digit:]]{1,3}/) {
       # Find string with kernel version and extract version number from it
       $_ =~ s/#//;
+      # Remove extra version number which is separated by + (e.g. Linux/arm 4.4.184+0.0.6)
+      $_ =~ tr/+/ /;
       $kernel_version = (split(' ', $_, 3))[1];
+      print "Kernel version $kernel_version\n" if $debug;
       # Look for values that aren't valid for $kernel_version
       for my $conf (keys %config)
       {
