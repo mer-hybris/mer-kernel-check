@@ -203,6 +203,7 @@ CONFIG_ANDROID_PARANOID_NETWORK	y,n       # Since Android 5 on some devices this
 CONFIG_AUDIT			n,!	# This will disable SELinux! That's ok, because hybris adaptations must not have SELinux, but if your device needs its support in kernel, set AUDIT=y and SELINUX_BOOTPARAM=y. Then disable them via kernel cmdline: audit=0 selinux=0. You can also leave audit enabled, if you don't plan to use systemd's containers: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=77b6e19458f37cfde127ec6aa9494c0ac45ad890
 CONFIG_AUTOFS4_FS		y,m,!	# systemd (optional): http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_BRIDGE			y,m,!   # connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
+CONFIG_CPUSETS			y,m,!	# lxc (optional): required to run lxc containers
 CONFIG_IP_NF_TARGET_MASQUERADE	y,m,!   # connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
 CONFIG_IP_NF_IPTABLES		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
 CONFIG_IP_MULTIPLE_TABLES	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
@@ -264,6 +265,7 @@ CONFIG_EXT4_FS			y,m,!	# Mer uses ext4 as rootfs by default
 CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
 CONFIG_INOTIFY_USER		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_IPV6			y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
+CONFIG_MODULES			y,!	# optional, required for module support (Such as WLAN for example)
 CONFIG_RTC_DRV_CMOS		y,!	# optional, but highly recommended
 CONFIG_SIGNALFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_TIMERFD			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
