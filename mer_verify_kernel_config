@@ -318,4 +318,8 @@ CONFIG_BTRFS_FS			y,!     # optional extra filesystem (BTRFS)
 CONFIG_IP_NF_MATCH_RPFILTER	y	# Add to have both IPv4 and IPv6 RPFILTER matches set
 CONFIG_IP6_NF_MATCH_RPFILTER	y	# To be able to mitigate CVE-2019-14899 with ConnMan iptables rule
 CONFIG_NF_NAT_IPV6		y,m,!	# connman: to enable IPv6 NAT
+CONFIG_QUOTA			y	# Quota is needed to prevent additional users from taking all space
+CONFIG_QUOTACTL			y	# To adjust quota
+CONFIG_QUOTA_NETLINK_INTERFACE	y	# For quota_nld service
+CONFIG_QFMT_V2			y	# Use this version of the interface for quotactl
 
