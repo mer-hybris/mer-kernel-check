@@ -322,4 +322,8 @@ CONFIG_QUOTA			y	# Quota is needed to prevent additional users from taking all s
 CONFIG_QUOTACTL			y	# To adjust quota
 CONFIG_QUOTA_NETLINK_INTERFACE	y	# For quota_nld service
 CONFIG_QFMT_V2			y	# Use this version of the interface for quotactl
+CONFIG_NAMESPACES		y	# Namespacing is needed by firejail
+CONFIG_UTS_NS			y	# Namespacing option needed by firejail
+CONFIG_IPC_NS			y	# Namespacing option needed by firejail
+CONFIG_PID_NS			y	# Namespacing option needed by firejail
 
