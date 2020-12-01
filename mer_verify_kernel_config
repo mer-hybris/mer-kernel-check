@@ -64,7 +64,12 @@ while (<DATA>) {
   chomp;
 
   my ($conf, $allowed) = split(' ', $_, 2);
+  my ($or_conf);
 
+  if ($conf =~ m/\|/ ) {
+     # If CONFIG_A|CONFIG_B
+     ($or_conf, $conf) = split('/', $conf, 2);
+   }
   # Remove and capture any trailing comment (dubious matching here
   # since comments in a "" or // will be removed too)
   my $comment;
@@ -90,6 +95,17 @@ while (<DATA>) {
                     comment => $comment,
                     warning => $warning,
                     version => $version};
+
+  if ($or_conf) {
+     # Allow alternative config and reference to it.
+     $config{$or_conf} = {allowed => \@allowed,
+                          comment => $comment,
+                          warning => $warning,
+                          version => $version,
+                          alternative_config => \$config{$conf}
+                         };
+     $config{$conf}{alternative_config} = \$config{$or_conf};
+  }
 }
 
 my $kconfig_line = 0;
@@ -185,7 +201,9 @@ for my $conf (keys %config) {
     print "Comment says: ". $c->{"comment"}."\n\n";
     if (! $c->{"warning"}) {
       $fatal = 1;
-    }
+   }
+
+    #FIXME handle or
   }
 }
 exit $fatal;
