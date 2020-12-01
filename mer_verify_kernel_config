@@ -218,7 +218,7 @@ CONFIG_NETFILTER_XT_MATCH_HASHLIMIT	y,m,!	# connman: for iptables hashlimit matc
 CONFIG_NETFILTER_XT_MATCH_IPRANGE	y,m,!	# connman: for iptables iprange match
 CONFIG_NETFILTER_XT_MATCH_MARK	y,m,!	# connman: for iptables mark match
 CONFIG_NETFILTER_XT_MATCH_MULTIPORT	y	# connman: for iptables multiple port match
-CONFIG_NETFILTER_XT_MATCH_QTAGUID	y,m	# connman: for iptables owner/qtaguid match
+#CONFIG_NETFILTER_XT_MATCH_QTAGUID	y,m	# connman: for iptables owner/qtaguid match
 CONFIG_NETFILTER_XT_MATCH_RECENT	y,m,!	# connman: for iptables recent match
 CONFIG_NETFILTER_XT_MATCH_SCTP	y,m,!	# connman: for iptables sctp match
 CONFIG_NETFILTER_XT_MATCH_STATE	y,m,!	# connman: for iptables state match
