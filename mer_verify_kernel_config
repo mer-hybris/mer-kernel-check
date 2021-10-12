@@ -262,6 +262,7 @@ CONFIG_HIDRAW			y,m,!	# optional: Support HID devices
 CONFIG_UNIX			y	# UNIX sockets option is required to run Mer
 CONFIG_SYSVIPC			y	# Inter Process Communication option is required to run Mer
 CONFIG_EXT4_FS			y,m,!	# Mer uses ext4 as rootfs by default
+CONFIG_CUSE			y,!,>=2.6	# CUSE (optional): Required for software security modules support.
 CONFIG_FANOTIFY			y,!	# optional, required for systemd readahead.
 CONFIG_INOTIFY_USER		y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=713bc0cfa477ca1df8769041cb3dbc83c10eace2
 CONFIG_IPV6			y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
