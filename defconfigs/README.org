@@ -1,0 +1,48 @@
+#+TITLE: Hybris defconfigs
+
+* Intro
+This directory contains kernel config fragments neded to run Sailfish OS on
+Hybris based hardware adaptions.
+The final hybris config fragment is generated using the directory structure
+explained below.
+
+* Directory structure
+The directory structure that the config fragments are stored in is the following:
++ Base config :: Config directives needed independent of Kernel or Android version
++ Android Version :: Config directives specific to Android version
+  + Kernel Version Major.Minor :: Config directives specific to kernel version
+
+* Config fragment structure
+Each fragment contains a include statement to include the preceding
+config fragment or the base fragment if not applicable. The Android Version
+specific config will include the config fragment of the preceding Android version.
+The kernel version specific config will include the config for the Android version it
+belongs too. After that the fragment may undefine a kernel config statements, override
+them or define new statements.
+
+** Example config fragment
+#+BEGIN_SRC conf
+#include <base/hybris.config>
+CONFIG_FOOBAR=m
+# CONFIG_BAR is not defined
+#+END_SRC
+
+
+* Hybris fragment generation
+The final /hybris.config/ fragment to be merged with the device specific is generated
+by calling /./merge_config_fragment.sh/ with the applicable fragment that fits to the
+devices hardware adaption Android and kernel version.
+Like this:
+#+begin_src sh
+./merge_config_fragment <android_version_major>/<version>.<patchlevel>/hybris.config
+#+end_src
+
+* Merging hybris fragment with defconfig
+The device defconfig can be merged like this with the ~hybris.config~
+before building the kernel:
+#+BEGIN_SRC sh
+cd "$ANDROID_ROOT"
+./hybris/mer-kernel-check/defconfigs/merge_device_defconfigs.sh \
+    -t <kernel_tree> \
+    -d <device>
+#+END_SRC
