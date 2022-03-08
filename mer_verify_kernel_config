@@ -246,7 +246,8 @@ CONFIG_CGROUP_PERF		y,!	# systemd (optional): https://github.com/systemd/systemd
 CONFIG_CGROUP_SCHED		y,!	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
 CONFIG_BLK_CGROUP		y,!	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
 CONFIG_NET_CLS_CGROUP		y,!	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
-CONFIG_NETPRIO_CGROUP		y,!	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
+CONFIG_NETPRIO_CGROUP		y,!,<=3.13	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
+CONFIG_CGROUP_NET_PRIO		y,!,>=3.14	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
 CONFIG_DEVTMPFS			y       # systemd: https://github.com/systemd/systemd/blob/v238/README
 CONFIG_DUMMY			n
 CONFIG_FHANDLE			y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=001809282918f273d372f1ee09d10b783c18a474
