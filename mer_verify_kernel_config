@@ -331,4 +331,5 @@ CONFIG_NAMESPACES		y	# Namespacing is needed by firejail
 CONFIG_UTS_NS			y	# Namespacing option needed by firejail
 CONFIG_IPC_NS			y	# Namespacing option needed by firejail
 CONFIG_PID_NS			y	# Namespacing option needed by firejail
+CONFIG_RFKILL			y,m,!	# Feature rfkill is needed by bluebinder
 
