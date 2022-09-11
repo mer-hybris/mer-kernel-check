@@ -105,6 +105,7 @@ while (<>) {
       $_ =~ s/#//;
       # Remove extra version number which is separated by + (e.g. Linux/arm 4.4.184+0.0.6)
       $_ =~ tr/+/ /;
+      $_ =~ tr/-/ /;
       $kernel_version = (split(' ', $_, 3))[1];
       print "Kernel version $kernel_version\n" if $debug;
       # Look for values that aren't valid for $kernel_version
