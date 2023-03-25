@@ -260,7 +260,13 @@ CONFIG_BT			y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
 CONFIG_BT_RFCOMM		y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
 CONFIG_BT_HCIUART		y,!     # Bluez (optional): Needed if bluez used as bluetooth stack
 CONFIG_BT_HCIUART_H4		y,!	# Bluez (optional): Needed if bluez used as bluetooth stack
+CONFIG_BT_HCIVHCI		y,!	# Bluez (optional): Needed if bluebinder is used with bluez (Android 8+ based ports)
+CONFIG_BT_HIDP			y,!	# Bluez (optional): Needed for HIDP (Human Interface Device Protocol) transport layer
+CONFIG_BT_BNEP			y,!	# Bluez (optional): Needed if bluetooth networking is wanted, e.g. for bluetooth tethering
+CONFIG_BT_BNEP_MC_FILTER	y,!	# Bluez (optional): Needed if bluetooth networking is wanted, e.g. for bluetooth tethering
+CONFIG_BT_BNEP_PROTO_FILTER	y,!	# Bluez (optional): Needed if bluetooth networking is wanted, e.g. for bluetooth tethering
 CONFIG_BT_MSM_SLEEP		n,!	# Bluez (optional): Causes problems with bluez thus disabling is recommended.
+CONFIG_RFKILL			y,m,!	# (optional) Needed if bluebinder is used
 CONFIG_HIDRAW			y,m,!	# optional: Support HID devices
 CONFIG_UNIX			y	# UNIX sockets option is required to run Mer
 CONFIG_SYSVIPC			y	# Inter Process Communication option is required to run Mer
