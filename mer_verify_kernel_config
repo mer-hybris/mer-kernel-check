@@ -263,22 +263,43 @@ CONFIG_FW_LOADER_USER_HELPER_FALLBACK	y,!	# optional, for droid firmware load he
 CONFIG_FW_LOADER_USER_HELPER		y,!	# Required by droid firmware load helper
 CONFIG_HIDRAW				y,m,!	# optional: Support HID devices
 CONFIG_IKCONFIG_PROC			y	# Required by hybris-boot init-script
+CONFIG_INET_AH				y	# Required by IPSec
+CONFIG_INET_ESP				y	# Required by IPSec
+CONFIG_INET6_AH				y	# Required by IPSec
+CONFIG_INET6_ESP			y	# Required by IPSec
 CONFIG_INOTIFY_USER			y	# systemd: https://github.com/systemd/systemd/blob/v238/README
+CONFIG_IP6_NF_FILTER			y,m	# Basic IPv6 packet filtering support for netfilter
+CONFIG_IP6_NF_IPTABLES			y,m	# Basic IPv6 iptables support for packet filtering
+CONFIG_IP6_NF_MANGLE			y,m	# Support IPv6 packet mangling with netfilter
 CONFIG_IP6_NF_MATCH_AH			y,m,!	# connman: for ip6tables ah match
 CONFIG_IP6_NF_MATCH_FRAG		y,m,!	# connman: for ip6tables frag match
 CONFIG_IP6_NF_MATCH_MH			y,m,!	# connman: for ip6tables mh match
 CONFIG_IP6_NF_MATCH_RPFILTER		y	# To be able to mitigate CVE-2019-14899 with ConnMan iptables rule
+CONFIG_IP6_NF_RAW			y	# Support RAW packet table in IPv6 netfilter. A basic need for iptables.
+CONFIG_IP6_NF_TARGET_REJECT		y	# Support netfilter reject target in IPv6 netfilter. A basic need for iptables.
 CONFIG_IPC_NS				y	# Namespacing option needed by firejail
 CONFIG_IPC_NS				y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_IP_MULTIPLE_TABLES		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
+CONFIG_IP_NF_ARPFILTER			y,m,!	# Support filtering arp packets in netfilter
+CONFIG_IP_NF_ARP_MANGLE			y,m,!	# Support mangling of ARP packets in netfilter
+CONFIG_IP_NF_ARPTABLES			y,m,!	# Support ARP tables in netfilter
+CONFIG_IP_NF_FILTER			y	# Support packet filtering in IPv4 netfilter
 CONFIG_IP_NF_IPTABLES			y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
+CONFIG_IP_NF_MANGLE			y	# Support mangle table in IPV4 netfilter. Mangle table is required for IPv6 CVE-2019-14899
 CONFIG_IP_NF_MATCH_AH			y,m,!	# connman: for iptables ah match
 CONFIG_IP_NF_MATCH_ECN			y,m,!	# connman: for iptables ecn match
 CONFIG_IP_NF_MATCH_RPFILTER		y	# Add to have both IPv4 and IPv6 RPFILTER matches set
 CONFIG_IP_NF_MATCH_TTL			y,m,!	# connman: for iptables ttl match
+CONFIG_IP_NF_NAT			y,>=3.17	# Support NAT table in netfilter. Tethering requires this. Since 3.17 and before this as CONFIG_NF_NAT_IPV4
+CONFIG_IP_NF_RAW			y	# Support raw table in IPv4 netfilter
+CONFIG_IP_NF_SECURITY			y	# Support security table in IPv4 netfilter
 CONFIG_IP_NF_TARGET_MASQUERADE		y,m,!	# connman (optional): support tethering, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=19fe7cad485afa6a7a5cc4aa75615ce8b7b8d376
+CONFIG_IP_NF_TARGET_REDIRECT		y,m,!	# Support redirect target in IPv4 netfilter, required for some masquerading scenarios
+CONFIG_IP_NF_TARGET_REJECT		y	# Support reject target in IPv4 netfilter, a quite basic requirement for iptables
+CONFIG_IP_SCTP				y,!,>=3.8	# SCTP support on both IP families, experimental exists already from 2.5 upwards but android kernels may have broken support for it. Experimental status dropped on 3.8 and upwards.
 CONFIG_IPV6				y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
 CONFIG_ISO9660_FS			y,m,!	# optional extra filesystem (CD-ROM)
+CONFIG_L2TP_IP				y,m,!	# Support for L2TP-over-IP socket family. Enables L2TPIP socket family with which userspace L2TPv3 daemons may create L2TP/IP tunnel sockets when UDP encapsulation is not required
 CONFIG_LBDAF				y,!	# ext4 filesystem requires this in order to support filesysetms with huge_file feature, which is enabled by default by mke2fs.ext4, not needed for 64bit architectures
 CONFIG_LOCKD_V4				y,!	# optional, for NFS support
 CONFIG_LOCKD				y,m,!	# optional, for NFS support
@@ -307,12 +328,17 @@ CONFIG_NETFILTER_XT_MATCH_QTAGUID	y,m,<=4.13.0	# connman: for iptables owner/qta
 CONFIG_NETFILTER_XT_MATCH_RECENT	y,m,!	# connman: for iptables recent match
 CONFIG_NETFILTER_XT_MATCH_SCTP		y,m,!	# connman: for iptables sctp match
 CONFIG_NETFILTER_XT_MATCH_STATE		y,m,!	# connman: for iptables state match
+CONFIG_NETFILTER_XT_NAT			y,m,!	# Enable netfilter DNAT and SNAT targets.
 CONFIG_NETFILTER_XT_TARGET_CONNMARK	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
+CONFIG_NETFILTER_XT_TARGET_LOG		y,m,!	# Enable LOG target for netfilter. A real basic need for debugging iptables rules.
 CONFIG_NET_NS				y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_NETPRIO_CGROUP			y,!,<=3.13	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
 CONFIG_NETWORK_FILESYSTEMS		y,!	# optional, for NFS support
 CONFIG_NET				y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=41938693e76c32161d2b3b83253ce996468cbf9b
-CONFIG_NF_NAT_IPV6			y,m,!	# connman: to enable IPv6 NAT
+CONFIG_NF_CONNTRACK_IPV4		y,m,!,<=4.18	# optional, exists up to 4.18
+CONFIG_NF_CONNTRACK_IPV6		y,m,!,<=4.18	# optional, exists up to 4.18
+CONFIG_NF_NAT_IPV4			y,m,>=3.7,<=5.0	# connman: to enable IPv4 NAT, exists in kernels betweek 3.7 and 5.0
+CONFIG_NF_NAT_IPV6			y,m,!,>=3.7,<=5.0	# connman: to enable IPv6 NAT, optional as exists in kernel between 3.7 to 5.0
 CONFIG_NFS_ACL_SUPPORT			y,m,!	# optional, for NFS support
 CONFIG_NFS_COMMON			y,!	# optional, for NFS support
 CONFIG_NFS_FS				y,m,!	# optional, for NFS support
