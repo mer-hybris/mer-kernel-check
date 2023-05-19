@@ -77,11 +77,13 @@ while (<DATA>) {
 
   my $warning;
   my $version;
+  my $version2;
   # Strip leading/trailing space for each value and check for warnings
   foreach (@allowed) {
     s/^\s+|\s+$//g;
     $warning = 1 if $_ eq "!" ;
-    $version = $_ if m/[\d\.<>=]/;
+    $version2 = $_ if (m/[\d\.<>=]/ and $version);
+    $version = $_ if m/[\d\.<>=]/ and ! $version;
   }
 
   # Each CONFIG_* has an array of allowed values, a comment and a flag
@@ -89,7 +91,8 @@ while (<DATA>) {
   $config{$conf} = {allowed => \@allowed,
                     comment => $comment,
                     warning => $warning,
-                    version => $version};
+                    version => $version,
+                    version2 => $version2};
 }
 
 my $kconfig_line = 0;
@@ -112,9 +115,24 @@ while (<>) {
       for my $conf (keys %config)
       {
          my $c = $config{$conf};
+         my $version_valid = 1;
          if ($c->{"version"})
          {
             my $config_version = $c->{"version"};
+            my $operator = $config_version;
+            $operator =~ s/[\d\s\w\.]//g;
+            $config_version =~ s/[><=]//g;
+            if(!cmp_version($kernel_version, $operator, $config_version))
+            {
+               delete($config{$conf});
+               print "Removing $conf, $kernel_version, $operator, $config_version\n"
+                   if $debug;
+               $version_valid = 0;
+            }
+         }
+         if ($version_valid and $c->{"version2"})
+         {
+            my $config_version = $c->{"version2"};
             my $operator = $config_version;
             $operator =~ s/[\d\s\w\.]//g;
             $config_version =~ s/[><=]//g;
