@@ -383,3 +383,4 @@ CONFIG_UTS_NS				y	# Namespacing option needed by firejail
 CONFIG_UTS_NS 				y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_VT				y	# Required for virtual consoles
 CONFIG_WATCHDOG_NOWAYOUT		y,!	# If device uses watchdogs with dsme (https://github.com/sailfishos/dsme), this option should be enabled or watchdog does not protect the device in case dsme crashes.
+CONFIG_STATIC_USERMODEHELPER	n,	# Android mandates to use a user mode helper when the kernel has to call userspace programs to handle things such as core dumps but we don't do that.
