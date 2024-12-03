@@ -306,6 +306,7 @@ CONFIG_LOCKD				y,m,!	# optional, for NFS support
 CONFIG_MEMCG_KMEM			y,!,>=3.6	# systemd (optional, but recommended): https://github.com/systemd/systemd/blob/v238/README, only valid if kernel version >= 3.6
 CONFIG_MEMCG_SWAP			y,!,>=3.6	# systemd (optional, but recommended): https://github.com/systemd/systemd/blob/v238/README, only valid if kernel version >= 3.6
 CONFIG_MEMCG				y,!,>=3.6	# systemd (optional, but recommended): https://github.com/systemd/systemd/blob/v238/README, only valid if version >= 3.6
+CONFIG_MEMCG_V1				y,!,>=6.11 	# systemd-tmpfiles required for jolla systemd-tmpfiles configuration.  memcg_v1 is deprecated from kernel 6.11 onward and this enables it again
 CONFIG_MODULES				y,!	# optional, required for module support (Such as WLAN for example)
 CONFIG_NAMESPACES			y	# Namespacing is needed by firejail
 CONFIG_NET_CLS_CGROUP			y,!	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
