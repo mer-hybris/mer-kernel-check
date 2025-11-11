@@ -350,6 +350,9 @@ CONFIG_NFS_V4				y,!	# optional, for NFS support
 CONFIG_NLS_UTF8				y	# Ensure that we support UTF8 filenames.
 CONFIG_PID_NS				y	# Namespacing option needed by firejail
 CONFIG_PID_NS				y,!	# optional, enables kernel namespaces for systemd-nspawn containers
+CONFIG_PPPOE				y	# Support for PPP over Ethernet. Required by pppd and pptp over it
+CONFIG_PPP_ASYNC			y	# Support for PPP over async devices. Not sure if required by pppd and pptp but enabled on old devices..
+CONFIG_PPP_SYNC_TTY			y	# Support using PPP over synchronous high-speed devices. Required by pppd and pptp over it.
 CONFIG_PROC_FS				y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=06d461ee6f3da6650e6d023d7828455752d70b0b
 CONFIG_QFMT_V2				y	# Use this version of the interface for quotactl
 CONFIG_QUOTACTL				y	# To adjust quota
