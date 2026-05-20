@@ -265,6 +265,7 @@ CONFIG_HIDRAW				y,m,!	# optional: Support HID devices
 CONFIG_IKCONFIG_PROC			y	# Required by hybris-boot init-script
 CONFIG_INET_AH				y	# Required by IPSec
 CONFIG_INET_ESP				y	# Required by IPSec
+CONFIG_INET_IPCOMP			y,m	# Support for IP Payload Compression Protocol (IPComp) (RFC3173), typically needed for IPsec.
 CONFIG_INET6_AH				y	# Required by IPSec
 CONFIG_INET6_ESP			y	# Required by IPSec
 CONFIG_INOTIFY_USER			y	# systemd: https://github.com/systemd/systemd/blob/v238/README
@@ -297,6 +298,7 @@ CONFIG_IP_NF_TARGET_MASQUERADE		y,m,!	# connman (optional): support tethering, h
 CONFIG_IP_NF_TARGET_REDIRECT		y,m,!	# Support redirect target in IPv4 netfilter, required for some masquerading scenarios
 CONFIG_IP_NF_TARGET_REJECT		y	# Support reject target in IPv4 netfilter, a quite basic requirement for iptables
 CONFIG_IP_SCTP				y,!,>=3.8	# SCTP support on both IP families, experimental exists already from 2.5 upwards but android kernels may have broken support for it. Experimental status dropped on 3.8 and upwards.
+CONFIG_IP_PNP				y,m,!	# This enables automatic configuration of IP addresses of devices and of the routing table during kernel boot.
 CONFIG_IPV6				y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
 CONFIG_ISO9660_FS			y,m,!	# optional extra filesystem (CD-ROM)
 CONFIG_L2TP_IP				y,m,!	# Support for L2TP-over-IP socket family. Enables L2TPIP socket family with which userspace L2TPv3 daemons may create L2TP/IP tunnel sockets when UDP encapsulation is not required
@@ -309,6 +311,8 @@ CONFIG_MEMCG				y,!,>=3.6	# systemd (optional, but recommended): https://github.
 CONFIG_MODULES				y,!	# optional, required for module support (Such as WLAN for example)
 CONFIG_NAMESPACES			y	# Namespacing is needed by firejail
 CONFIG_NET_CLS_CGROUP			y,!	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
+CONFIG_NET_DROP_MONITOR		y,m,!	# Enable package drop monitoring
+CONFIG_NET_L3_MASTER_DEV		y,m	# For l2tp/pptp
 CONFIG_NETFILTER_NETLINK_ACCT		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
 CONFIG_NETFILTER_XT_CONNMARK		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
 CONFIG_NETFILTER_XT_MATCH_CONNMARK	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
@@ -337,6 +341,8 @@ CONFIG_NETWORK_FILESYSTEMS		y,!	# optional, for NFS support
 CONFIG_NET				y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=41938693e76c32161d2b3b83253ce996468cbf9b
 CONFIG_NF_CONNTRACK_IPV4		y,m,!,<=4.18	# optional, exists up to 4.18
 CONFIG_NF_CONNTRACK_IPV6		y,m,!,<=4.18	# optional, exists up to 4.18
+CONFIG_NF_LOG_IPV4			y,m	# For netfilter IPv4 logging
+CONFIG_NF_LOG_IPV6			y,m	# For netfilter IPv6 logging
 CONFIG_NF_NAT_IPV4			y,m,>=3.7,<=5.0	# connman: to enable IPv4 NAT, exists in kernels betweek 3.7 and 5.0
 CONFIG_NF_NAT_IPV6			y,m,!,>=3.7,<=5.0	# connman: to enable IPv6 NAT, optional as exists in kernel between 3.7 to 5.0
 CONFIG_NFS_ACL_SUPPORT			y,m,!	# optional, for NFS support
