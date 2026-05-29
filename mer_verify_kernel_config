@@ -301,7 +301,8 @@ CONFIG_IP_SCTP				y,!,>=3.8	# SCTP support on both IP families, experimental exi
 CONFIG_IP_PNP				y,m,!	# This enables automatic configuration of IP addresses of devices and of the routing table during kernel boot.
 CONFIG_IPV6				y,m,!	# systemd: http://cgit.freedesktop.org/systemd/systemd/tree/README#n37
 CONFIG_ISO9660_FS			y,m,!	# optional extra filesystem (CD-ROM)
-CONFIG_L2TP_IP				y,m,!	# Support for L2TP-over-IP socket family. Enables L2TPIP socket family with which userspace L2TPv3 daemons may create L2TP/IP tunnel sockets when UDP encapsulation is not required
+CONFIG_L2TP_IP				y,m	# Support for L2TP-over-IP socket family. Enables L2TPIP socket family with which userspace L2TPv3 daemons may create L2TP/IP tunnel sockets when UDP encapsulation is not required
+CONFIG_L2TP_V3				y	# Enable tunneling raw ethernet frames over L2TP, and to support L2TP v3 equipment.
 CONFIG_LBDAF				y,!	# ext4 filesystem requires this in order to support filesysetms with huge_file feature, which is enabled by default by mke2fs.ext4, not needed for 64bit architectures
 CONFIG_LOCKD_V4				y,!	# optional, for NFS support
 CONFIG_LOCKD				y,m,!	# optional, for NFS support
@@ -357,7 +358,9 @@ CONFIG_NLS_UTF8				y	# Ensure that we support UTF8 filenames.
 CONFIG_PID_NS				y	# Namespacing option needed by firejail
 CONFIG_PID_NS				y,!	# optional, enables kernel namespaces for systemd-nspawn containers
 CONFIG_PPPOE				y,m	# Support for PPP over Ethernet. Required by pppd and pptp over it
-CONFIG_PPP_ASYNC			y,m	# Support for PPP over async devices. Not sure if required by pppd and pptp but enabled on old devices..
+CONFIG_PPP_ASYNC			y,m	# Support for PPP over async devices. Not sure if required by pppd and pptp but enabled on old devices.
+CONFIG_PPP_FILTER			y	# Support for PPP to use pass-filter and active-filter options.
+CONFIG_PPP_MULTILINK			y	# Support for PPP to fully utilize the bandwidth.
 CONFIG_PPP_SYNC_TTY			y,m	# Support using PPP over synchronous high-speed devices. Required by pppd and pptp over it.
 CONFIG_PROC_FS				y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=06d461ee6f3da6650e6d023d7828455752d70b0b
 CONFIG_QFMT_V2				y	# Use this version of the interface for quotactl
