@@ -378,6 +378,7 @@ CONFIG_TMPFS_XATTR			y,!	# systemd (optional): strongly recommended, https://git
 CONFIG_TUN				y,m,!	# ofono: http://git.kernel.org/?p=network/ofono/ofono.git;a=blob;f=README;h=413d789e5f9e96024986f5116d3c8aff0c9f15b8;hb=HEAD#l28
 CONFIG_UDF_FS				y,m,!	# optional extra filesystem (DVD & portable USB)
 CONFIG_UEVENT_HELPER_PATH		"", !	# should be empty, if you want to use systemd without initramfs. Also systemd: https://github.com/systemd/systemd/blob/v238/README
+CONFIG_USB_SERIAL			y,m,!	# USB Serial Cables and devices
 CONFIG_UNIX				y	# UNIX sockets option is required to run Mer
 CONFIG_UTS_NS				y	# Namespacing option needed by firejail
 CONFIG_UTS_NS 				y,!	# optional, enables kernel namespaces for systemd-nspawn containers
