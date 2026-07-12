@@ -313,7 +313,7 @@ CONFIG_MODULES				y,!	# optional, required for module support (Such as WLAN for 
 CONFIG_NAMESPACES			y	# Namespacing is needed by firejail
 CONFIG_NET_CLS_CGROUP			y,!	# systemd (optional): https://github.com/systemd/systemd/blob/v238/README
 CONFIG_NET_DROP_MONITOR		y,m,!	# Enable package drop monitoring
-CONFIG_NET_L3_MASTER_DEV		y,m	# For l2tp/pptp
+CONFIG_NET_L3_MASTER_DEV		y,>=4.4	# For l2tp/pptp
 CONFIG_NETFILTER_NETLINK_ACCT		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=41f37125887cb9208da2441e350e1e3324c17ee6
 CONFIG_NETFILTER_XT_CONNMARK		y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
 CONFIG_NETFILTER_XT_MATCH_CONNMARK	y,m,!	# connman (optional): for routing and statistic support in sessions, http://git.kernel.org/cgit/network/connman/connman.git/commit/README?id=115cb9cbd3cdda00784e58a4ea12b42d128732b4
@@ -342,8 +342,8 @@ CONFIG_NETWORK_FILESYSTEMS		y,!	# optional, for NFS support
 CONFIG_NET				y	# systemd: http://cgit.freedesktop.org/systemd/systemd/commit/README?id=41938693e76c32161d2b3b83253ce996468cbf9b
 CONFIG_NF_CONNTRACK_IPV4		y,m,!,<=4.18	# optional, exists up to 4.18
 CONFIG_NF_CONNTRACK_IPV6		y,m,!,<=4.18	# optional, exists up to 4.18
-CONFIG_NF_LOG_IPV4			y,m	# For netfilter IPv4 logging
-CONFIG_NF_LOG_IPV6			y,m	# For netfilter IPv6 logging
+CONFIG_NF_LOG_IPV4			y,m,>=3.17	# For netfilter IPv4 logging
+CONFIG_NF_LOG_IPV6			y,m,>=3.17	# For netfilter IPv6 logging
 CONFIG_NF_NAT_IPV4			y,m,>=3.7,<=5.0	# connman: to enable IPv4 NAT, exists in kernels betweek 3.7 and 5.0
 CONFIG_NF_NAT_IPV6			y,m,!,>=3.7,<=5.0	# connman: to enable IPv6 NAT, optional as exists in kernel between 3.7 to 5.0
 CONFIG_NFS_ACL_SUPPORT			y,m,!	# optional, for NFS support
